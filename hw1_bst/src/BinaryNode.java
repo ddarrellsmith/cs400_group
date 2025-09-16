@@ -7,7 +7,8 @@ import java.util.Stack;
  * data value and is doubly linked: has a reference to its parent node and 
  * two references to its children nodes.
  */
-public class BinaryNode<T extends Comparable<T>> {
+public class BinaryNode<T> {
+
     // stores the data value for the node
     protected T data;
     // reference to the node's parent
@@ -170,45 +171,4 @@ public class BinaryNode<T extends Comparable<T>> {
         return sb.toString();
     }
 
-    public boolean hasLeft(){
-        return this.getLeft() != null;
-    }
-    public boolean hasRight(){
-        return this.getRight() != null;
-    }
-    public boolean isLeaf(){
-        return this.hasLeft() || this.hasRight();
-    }
-    public boolean isRoot(){
-        return this.getParent() != null;
-    }
-    public int size(){
-        int size = 1;
-        if (this.hasLeft()){
-            size += this.getLeft().size();
-        }
-        if (this.hasRight()){
-            size += this.getRight().size();
-        }
-        return size;
-    }
-        /**
-     * Tests if a value is contained within the heirarchy of a node
-     * @param value the value to search for
-     * @return      true if the value is contained in the heirarchy of this node, 0 otherwise
-     */
-	public boolean contains(T value){
-        int compare = value.compareTo(this.getData());
-
-        if (compare == 0){
-            return true;
-        }
-        else if ((compare > 0) && this.hasRight()){
-            return this.getRight().contains(value);
-        }
-        else if ((compare < 0) && this.hasLeft()){
-            return this.getLeft().contains(value);
-        }
-        else return false;
-	}
 }
